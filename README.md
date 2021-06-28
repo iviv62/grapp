@@ -2,6 +2,7 @@
 
 ## Installing WSL on Windows OS
 
+
 Grapp depends on linux to execute binary files. For this reason we would have to install Linux virtual machine or linux terminal environment. For simplicity we will use WSL. The  following link is to a installation guide.
 
 [How to install Windows Subsystem for Linux (WSL)](https://www.windowscentral.com/install-windows-subsystem-linux-windows-10) 
