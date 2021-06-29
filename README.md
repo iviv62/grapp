@@ -2,6 +2,7 @@
 
 ## Installing WSL on Windows OS
 
+
 Grapp depends on linux to execute binary files. For this reason we would have to install Linux virtual machine or linux terminal environment. For simplicity we will use WSL. The  following link is to a installation guide.
 
 [How to install Windows Subsystem for Linux (WSL)](https://www.windowscentral.com/install-windows-subsystem-linux-windows-10) 
@@ -82,4 +83,32 @@ Run the following command to start development server at http://127.0.0.1:8000/
 ```bash
 python manage.py runserver
 ```
+## Create superuser
+First we’ll need to create a user who can login to the admin site. Run the following command:
 
+```bash
+python manage.py createsuperuser
+```
+
+enter your desired username and press enter.
+
+```bash
+Username: admin
+```
+You will then be prompted for your desired email address:
+
+```bash
+Email address: admin@example.com
+```
+The final step is to enter your password. You will be asked to enter your password twice, the second time as a confirmation of the first.
+
+```bash
+Password: **********
+Password (again): *********
+Superuser created successfully.
+```
+Start development server
+```bash
+python manage.py runserver
+```
+And go to http://127.0.0.1:8000/admin to log in
