@@ -112,3 +112,6 @@ Start development server
 python manage.py runserver
 ```
 And go to http://127.0.0.1:8000/admin to log in
+
+
+sudo chmod -R a=rwx bin
