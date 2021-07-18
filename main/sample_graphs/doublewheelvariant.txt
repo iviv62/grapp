@@ -1,0 +1,1252 @@
+Creator "ogdf::GraphAttributes::writeGML"
+directed 1
+graph [
+node [
+id 0
+template "oreas:std:rect"
+label "0"
+graphics [
+x 45.00000000
+y 134.0000000
+w 16.00000000
+h 16.00000000
+fill "#ffff00"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 1
+template "oreas:std:rect"
+label "1"
+graphics [
+x 188.0000000
+y 116.0000000
+w 16.00000000
+h 16.00000000
+fill "#ffffff"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 2
+template "oreas:std:rect"
+label "2"
+graphics [
+x 152.0000000
+y 96.00000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 3
+template "oreas:std:rect"
+label "3"
+graphics [
+x 186.0000000
+y 48.00000000
+w 16.00000000
+h 16.00000000
+fill "#ffffff"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 4
+template "oreas:std:rect"
+label "4"
+graphics [
+x 17.00000000
+y 128.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 5
+template "oreas:std:rect"
+label "5"
+graphics [
+x 140.0000000
+y 392.0000000
+w 16.00000000
+h 16.00000000
+fill "#ffffff"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 6
+template "oreas:std:rect"
+label "6"
+graphics [
+x 132.0000000
+y 324.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 7
+template "oreas:std:rect"
+label "7"
+graphics [
+x 161.0000000
+y 335.0000000
+w 16.00000000
+h 16.00000000
+fill "#ffffff"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 8
+template "oreas:std:rect"
+label "8"
+graphics [
+x 137.0000000
+y 266.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 9
+template "oreas:std:rect"
+label "9"
+graphics [
+x 164.0000000
+y 260.0000000
+w 16.00000000
+h 16.00000000
+fill "#ffffff"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 10
+template "oreas:std:rect"
+label "10"
+graphics [
+x 143.0000000
+y 212.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 11
+template "oreas:std:rect"
+label "11"
+graphics [
+x 176.0000000
+y 192.0000000
+w 16.00000000
+h 16.00000000
+fill "#ffffff"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 12
+template "oreas:std:rect"
+label "12"
+graphics [
+x 142.0000000
+y 147.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 13
+template "oreas:std:rect"
+label "13"
+graphics [
+x 223.0000000
+y 166.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 14
+template "oreas:std:rect"
+label "14"
+graphics [
+x 440.0000000
+y 196.0000000
+w 16.00000000
+h 16.00000000
+fill "#ffff00"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 15
+template "oreas:std:rect"
+label "15"
+graphics [
+x 229.0000000
+y 102.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 16
+template "oreas:std:rect"
+label "16"
+graphics [
+x 486.0000000
+y 195.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 17
+template "oreas:std:rect"
+label "17"
+graphics [
+x 200.0000000
+y 337.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 18
+template "oreas:std:rect"
+label "18"
+graphics [
+x 204.0000000
+y 284.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+node [
+id 19
+template "oreas:std:rect"
+label "19"
+graphics [
+x 213.0000000
+y 224.0000000
+w 16.00000000
+h 16.00000000
+fill "#ff0000"
+line "#000000"
+pattern "1"
+stipple 1
+lineWidth 1.000000000
+type "rectangle"
+width 1.0
+]
+]
+edge [
+source 0
+target 1
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 188.0000000 y 116.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 2
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 152.0000000 y 96.00000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 1
+target 2
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 188.0000000 y 116.0000000 ]
+point [ x 152.0000000 y 96.00000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 3
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 186.0000000 y 48.00000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 1
+target 3
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 188.0000000 y 116.0000000 ]
+point [ x 186.0000000 y 48.00000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 2
+target 3
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 152.0000000 y 96.00000000 ]
+point [ x 186.0000000 y 48.00000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 4
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 17.00000000 y 128.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 3
+target 4
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 186.0000000 y 48.00000000 ]
+point [ x 17.00000000 y 128.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 5
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 140.0000000 y 392.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 3
+target 5
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 186.0000000 y 48.00000000 ]
+point [ x 4.000000000 y 90.00000000 ]
+point [ x 3.000000000 y 155.0000000 ]
+point [ x 140.0000000 y 392.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 4
+target 5
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 17.00000000 y 128.0000000 ]
+point [ x 140.0000000 y 392.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 6
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 132.0000000 y 324.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 5
+target 6
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 140.0000000 y 392.0000000 ]
+point [ x 132.0000000 y 324.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 7
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 161.0000000 y 335.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 5
+target 7
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 140.0000000 y 392.0000000 ]
+point [ x 161.0000000 y 335.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 6
+target 7
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 132.0000000 y 324.0000000 ]
+point [ x 161.0000000 y 335.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 8
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 137.0000000 y 266.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 7
+target 8
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 161.0000000 y 335.0000000 ]
+point [ x 137.0000000 y 266.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 9
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 164.0000000 y 260.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 7
+target 9
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 161.0000000 y 335.0000000 ]
+point [ x 164.0000000 y 260.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 8
+target 9
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 137.0000000 y 266.0000000 ]
+point [ x 164.0000000 y 260.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 10
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 143.0000000 y 212.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 9
+target 10
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 164.0000000 y 260.0000000 ]
+point [ x 143.0000000 y 212.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 11
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 176.0000000 y 192.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 1
+target 11
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 188.0000000 y 116.0000000 ]
+point [ x 176.0000000 y 192.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 9
+target 11
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 164.0000000 y 260.0000000 ]
+point [ x 176.0000000 y 192.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 10
+target 11
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 143.0000000 y 212.0000000 ]
+point [ x 176.0000000 y 192.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 0
+target 12
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 45.00000000 y 134.0000000 ]
+point [ x 142.0000000 y 147.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 1
+target 12
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 188.0000000 y 116.0000000 ]
+point [ x 142.0000000 y 147.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 11
+target 12
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 176.0000000 y 192.0000000 ]
+point [ x 142.0000000 y 147.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 1
+target 13
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 188.0000000 y 116.0000000 ]
+point [ x 223.0000000 y 166.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 11
+target 13
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 176.0000000 y 192.0000000 ]
+point [ x 223.0000000 y 166.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 1
+target 14
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 188.0000000 y 116.0000000 ]
+point [ x 440.0000000 y 196.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 3
+target 14
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 186.0000000 y 48.00000000 ]
+point [ x 440.0000000 y 196.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 5
+target 14
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 140.0000000 y 392.0000000 ]
+point [ x 440.0000000 y 196.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 7
+target 14
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 161.0000000 y 335.0000000 ]
+point [ x 440.0000000 y 196.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 9
+target 14
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 164.0000000 y 260.0000000 ]
+point [ x 440.0000000 y 196.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 11
+target 14
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 176.0000000 y 192.0000000 ]
+point [ x 440.0000000 y 196.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 13
+target 14
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 223.0000000 y 166.0000000 ]
+point [ x 440.0000000 y 196.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 1
+target 15
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 188.0000000 y 116.0000000 ]
+point [ x 229.0000000 y 102.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 3
+target 15
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 186.0000000 y 48.00000000 ]
+point [ x 229.0000000 y 102.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 14
+target 15
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 440.0000000 y 196.0000000 ]
+point [ x 229.0000000 y 102.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 3
+target 16
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 186.0000000 y 48.00000000 ]
+point [ x 486.0000000 y 195.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 5
+target 16
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 140.0000000 y 392.0000000 ]
+point [ x 486.0000000 y 195.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 14
+target 16
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 440.0000000 y 196.0000000 ]
+point [ x 486.0000000 y 195.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 5
+target 17
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 140.0000000 y 392.0000000 ]
+point [ x 200.0000000 y 337.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 7
+target 17
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 161.0000000 y 335.0000000 ]
+point [ x 200.0000000 y 337.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 14
+target 17
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 440.0000000 y 196.0000000 ]
+point [ x 200.0000000 y 337.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 7
+target 18
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 161.0000000 y 335.0000000 ]
+point [ x 204.0000000 y 284.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 9
+target 18
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 164.0000000 y 260.0000000 ]
+point [ x 204.0000000 y 284.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 14
+target 18
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 440.0000000 y 196.0000000 ]
+point [ x 204.0000000 y 284.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 9
+target 19
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 164.0000000 y 260.0000000 ]
+point [ x 213.0000000 y 224.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 11
+target 19
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 176.0000000 y 192.0000000 ]
+point [ x 213.0000000 y 224.0000000 ]
+]
+fill "#000000"
+]
+]
+edge [
+source 14
+target 19
+generalization 0
+graphics [
+type "line"
+arrow "none"
+stipple 1
+lineWidth 1.000000000
+Line [
+point [ x 440.0000000 y 196.0000000 ]
+point [ x 213.0000000 y 224.0000000 ]
+]
+fill "#000000"
+]
+]
+]
+rootcluster [
+vertex "0"
+vertex "1"
+vertex "2"
+vertex "3"
+vertex "4"
+vertex "5"
+vertex "6"
+vertex "7"
+vertex "8"
+vertex "9"
+vertex "10"
+vertex "11"
+vertex "12"
+vertex "13"
+vertex "14"
+vertex "15"
+vertex "16"
+vertex "17"
+vertex "18"
+vertex "19"
+]

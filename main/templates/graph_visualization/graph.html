@@ -1,0 +1,910 @@
+{% extends 'graph_visualization/base.html' %}
+{% block graph %}
+
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav id="sidebar" data-simplebar>
+    <div class="controls">
+
+      <div class="force2">
+        <div style="display: flex;">Zoom level <div class="ml-4" id="zoom">2</div>
+        </div>
+        <input id="zoomInput" type="range" min="0" max="100" step="1"><br>
+        <div style="display: flex;">edge curves <div class="ml-4" id="linkCurve">0</div>
+        </div>
+        <input id="linkCurveInput" type="range" min="0" max="1" value="0" step="0.1" oninput="">
+        <div style="display: flex;">edge width <div class="ml-4" id="edgeWidth">1</div>
+        </div>
+        <input id="edgeWidthInput" type="range" min="1" max="10" value="1" step="1" oninput="">
+        <div style="display: flex;">vertex radius<div class="ml-4" id="nodeRadius">1</div>
+        </div>
+        <input id="nodeRadiusInput" type="range" min="1" max="20" value="1" step="1" oninput="">
+
+        <div style="display: flex;">force collide<div class="ml-4" id="force-collide">0</div>
+        </div>
+        <input id="force-collideInput" type="range" min="0" max="200" value="0" step="1"><br>
+        <div style="display: flex;">edge length<div class="ml-4" id="link-distance">1</div>
+        </div>
+        <input id="link-distanceInput" type="range" min="0" max="250" value="1" step="1"><br>
+        <div style="display: flex;">vertex attraction<div class="ml-4" id="node-attraction">1</div>
+        </div>
+        <input id="node-attractionInput" type="range" min="-250" max="250" value="1" step="1"><br>
+      </div>
+
+      <div class="force2">
+        <div class='mt-4' style="color:aliceblue">
+          <span id='vertexNum'>vertices:</span><br>
+          <span id="edgeNum">edges: </span>
+        </div>
+      </div>
+      <div class="force2">
+        
+        <div>Enable Interaction
+          <input class="fr" type="checkbox" id="interaction" name="interaction" value="true" checked><br>
+          Edge visibility
+          <input class="fr" type="checkbox" id="edge-visibility" name="edge-visibility" value="true" checked><br>
+          Show vertex labels
+          <input class="fr" type="checkbox" id="vertex-labels" name="vertex-labels" value="true" checked><br>
+          Fix on move
+          <input class="fr" type="checkbox" id="fixed-nodes" name="fixed-nodes" value="false"><br>
+          Fix all vertices
+          <input class="fr" type="checkbox" id="fixed-nodes-all" name="fixed-nodes-all" value="false"><br>
+         <!-- Directional particles
+          <input class="fr" type="checkbox" id="particles" name="particles" value="true"><br>-->
+          Color background
+          <input style="float: right;" type="color" id="bgcolor" name="bgcolor" value="#ffffff"><br>
+          Color all vertices
+          <input style="float: right;" type="color" id="nodes-color" name="nodes-color" value="#000000"><br>
+          Color all edges
+          <input style="float: right;" type="color" id="edges-color" name="edges-color" value="#ffffff"><br>
+          
+  
+        </div>
+      </div>
+      <div class="force">
+        <center> Commands
+
+          <select name="command" id="command">
+            <option value="" selected disabled hidden></option>
+            <option value="radialLayout">radial layout</option>
+            {% for obj in commands %}
+            <option value="{{obj.name}}">{{obj.name}}</option>
+            {% endfor  %}
+
+          </select>
+        </center>
+      </div>
+      <div class="force">
+        <button data-toggle="modal" data-target="#parameterModal" class="navBtn">Parameters</button>
+      </div>
+
+
+
+      <div class="menu">
+        <div id="nodeId"></div>
+        <ul class="menu-options">
+          <li id="delete-option" class="menu-option">Delete</li>
+          <li class="menu-option"></li>
+
+        </ul>
+      </div>
+
+      {% include "graph_visualization/modals.html" %}
+
+
+    </div>
+
+  </nav>
+  
+  <div id="content" class="active">
+    {% include "graph_visualization/topNav.html" %}
+    <div >
+    <div id="top-layer"></div>
+    <div id="graph" ondragover="overrideDefault(event);"
+    ondragenter="overrideDefault(event);"
+    ondragleave="overrideDefault(event);" ondrop="overrideDefault(event);addFiles(event);">
+    </div>
+  </div>
+  </div>
+    
+  </div>
+</div>
+
+
+
+
+
+<script>  	
+  $( "body" ).addClass( "stop__scroll" );
+  let data = '{{data |safe}}';
+  try {
+    data = JSON.parse(data);  
+  } catch (error) {
+    console.log(error);
+  }
+  
+
+
+  const fixNodesPostionsOnLoad=(data)=>{
+    data.nodes.forEach((node)=>{
+    //add info attr
+    node.info="";
+
+    !node.graphics &&(node.graphics={})
+    if(node.graphics.x || node.graphics.y){
+      
+      //mark the checkbox as selected
+      document.getElementById("fixed-nodes-all").checked=true;
+      document.getElementById("fixed-nodes").checked=true;
+
+      node.fx=node.graphics.x;
+      node.fy=node.graphics.y;
+      node.x=node.graphics.x;
+      node.y=node.graphics.y
+
+
+    }else{
+      //mark the checkbox as selected
+      document.getElementById("fixed-nodes-all").checked=false;
+      document.getElementById("fixed-nodes").checked=false;
+    }
+    //add neighbors attribute to track nodes neighbors
+    //data.links.forEach(link => {
+    //  const a = data.nodes[link.source];
+    //  const b = data.nodes[link.target];
+    //  !a.neighbors && (a.neighbors = []);
+    //  !b.neighbors && (b.neighbors = []);
+    //  a.neighbors.push(b);
+    //  b.neighbors.push(a);
+
+    //  !a.links && (a.links = []);
+    //  !b.links && (b.links = []);
+    //  a.links.push(link);
+    //  b.links.push(link);
+   // });
+
+  });
+  return data
+  }
+
+  
+
+
+  const dashLen =2
+  const gapLen = 5;
+  
+
+  const store = JSON.parse(localStorage.getItem("graphData"))
+  localStorage.removeItem("graphData");
+
+  window.selectedNodes = new Set();
+  window.selectedLinks = new Set();
+  const highlightNodes = new Set();
+  const highlightLinks = new Set();
+  let hoverNode = null;
+
+  let vertexLabels = $("#vertex-labels").is(":checked")  
+ 
+  function visualize(data) {
+
+    const elem = document.getElementById('graph');
+    console.log(data);
+    var Graph = ForceGraph()(elem)
+      .nodeId('id')
+      .nodeLabel(node => node.label ? node.label = node.label : node.label = node.id)
+      .nodeColor(node => nodeColoring(node))
+      .linkColor(link => linkColoring(link))
+      .nodeVal(node=>nodeSize(node))
+      .autoPauseRedraw(true)
+      .linkWidth(link => link.graphics.lineWidth?link.graphics.lineWidth=link.graphics.lineWidth : link.graphics.lineWidth= 1)
+      .linkLineDash((link) =>linkType(link) )
+      .d3Force("collide", d3.forceCollide().radius(node => nodeSize(node)))
+      .d3Force("center", d3.forceCenter(0,0))
+      .linkCanvasObjectMode(link => "after")
+      .linkCanvasObject( (link, ctx,globalScale) => drawLink(link,ctx,globalScale) )
+      .nodeCanvasObjectMode(() => "after")
+      .nodeCanvasObject((node, ctx, globalScale) =>nodePaint(node,ctx,globalScale) )
+      .linkSource('source')
+      .linkTarget('target')
+      .onBackgroundClick((e) => { e.shiftKey?addNode(e, Graph):deselectAll()})
+      .onNodeHover(node => {
+        //highlightNodes.clear();
+        //highlightLinks.clear();
+        //if (node) {
+        //  highlightNodes.add(node);
+        //  node.neighbors.forEach(neighbor => highlightNodes.add(neighbor));
+        //  node.links.forEach(link => highlightLinks.add(link));
+        //}
+
+        //hoverNode = node || null;
+      }) 
+      .onLinkHover((node) => {elem.style.cursor = node ? 'pointer' : null;})
+      .onNodeDrag((node)=>{
+        if(node.graphics){
+        node.graphics.x=node.x;
+        node.graphics.y=node.y;
+      }})
+      .onZoomEnd((obj)=>{
+        var zoomOutput = document.getElementById("zoom");
+        let zoomInput = document.getElementById("zoomInput");
+        zoomOutput.innerHTML=Math.round(obj.k);
+        zoomInput.value=Math.round(obj.k);
+      })
+      .maxZoom(100)
+      //.onBackgroundClick(()=>deselectAll())
+      .onLinkRightClick((link, event) => openLinkModal(link,event))
+      .onNodeClick((node, event) => clickOnNode(node, event))
+      .onLinkClick((link, event) => clickOnLink(link,event))
+      .onNodeRightClick((node, event) => {openNodeModal(node,event)})
+      .graphData(fixNodesPostionsOnLoad(data))
+      .linkDirectionalParticles(4)
+      .linkDirectionalParticleWidth(link => highlightLinks.has(link) ? 4 : 0)
+      .onRenderFramePost(()=>{
+        let vertexNum = countVertexNum();
+        let edgeNum = countEdgeNum();
+        $("#vertexNum").text("vertices: " + vertexNum);
+        $("#edgeNum").text("edges: " + edgeNum);
+      });
+    ///////////////////////functions//////////////////////////////////////////////
+      
+    const setRadialLayout= (rad) =>{
+      //mark the checkbox as selected
+      document.getElementById("fixed-nodes-all").checked=true;
+      document.getElementById("fixed-nodes").checked=true;
+
+      let { nodes, links } = Graph.graphData()
+      nodes.forEach(node=>{
+        delete node.fx;
+        delete node.fy;
+      })
+      
+      Graph.graphData({ nodes:nodes, links:[] })
+            .d3Force('charge', null) // Deactivate existing charge
+            .d3Force('radial', d3.forceRadial(d => rad))
+            .d3Force('collide', d3.forceCollide(16))
+  
+            
+      setTimeout(() => {
+      nodes.forEach((node) => {
+        node.fx = node.x;
+        node.fy = node.y;
+      })
+      Graph.graphData({ nodes:nodes, links:links })
+      Graph.zoomToFit(100, 70, node => true)
+
+    }, 3000);
+    }
+    const nodeSize = (node) =>{
+      if (!node.graphics) {
+        node.graphics = {};
+      }
+      if (!node.graphics.lineWidth) {
+        node.graphics.lineWidth = 1
+      }
+      else {
+        node.graphics.lineWidth = node.graphics.lineWidth
+      }
+  
+      return node.graphics.lineWidth
+    }
+
+    const nodeColoring = (node) => {
+      if (!node.graphics) {
+        node.graphics = {};
+      }
+      if (!node.graphics.fill) {
+        node.graphics.fill = "black"
+      }
+      else {
+        node.graphics.fill = node.graphics.fill
+      }
+  
+      return node.graphics.fill
+
+    }
+    const linkColoring = (link) => {
+      if (!link.graphics) {
+        link.graphics = {};
+      }
+      if (!link.graphics.fill) {
+        link.graphics.fill = "gray"
+      } else {
+        link.graphics.fill = link.graphics.fill
+      }
+      return link.graphics.fill
+
+    }
+
+    const countVertexNum= () =>{
+      let {
+        nodes,
+        links
+      } = Graph.graphData();
+      return nodes.length
+    }
+
+    const countEdgeNum=()=>{
+      let {
+        nodes,
+        links
+      } = Graph.graphData();
+      return links.length
+    }
+
+    //gets a node as a parameter and removes it from the graph data
+    const removeNode = (node) => {
+      let {
+        nodes,
+        links
+      } = Graph.graphData();
+      links = links.filter(l => l.source.index !== node.index && l.target.index !== node
+        .index); // Remove links attached to node
+
+      nodes = nodes.filter(n => n.index !== node.index); //remove node
+      //rerender graph
+      Graph.graphData({
+       nodes,
+        links
+      });
+    }
+    const deleteAllNodesAndEdges=()=>{
+      //delete Nodes
+      let toBedeletedNodes = Array.from(window.selectedNodes);
+      window.selectedNodes.clear();
+      toBedeletedNodes.forEach(node=>removeNode(node));
+      //delete Edges
+      let toBedeletedEdges = Array.from(window.selectedNodes);
+      window.selectedEdges.clear();
+      toBedeletedEdges.forEach(link=>removeLink(link));
+    }
+    //gets a Links as a parameter and removes it from the graph data
+    const removeLink = (link) => {
+              let {
+                nodes,
+                links
+              } = Graph.graphData();
+              links = links.filter(l => parseInt(l.index) !== parseInt(link.index));
+              Graph.graphData({
+                nodes,
+                links
+              });
+    }
+
+    const openNodeModal = (node,event)=>{
+      //in case multiple nodes are selected
+      //
+      if (window.selectedNodes.size>1){
+          $('#myModal').find('.modal-title').text("Number of nodes selected: " + window.selectedNodes.size)
+          $('#modal-label').val("");
+          $('#myModal').find("#modal-size").val("");
+          $('#modal-color').val(node.graphics.fill?node.graphics.fill.toString():"black")
+          $("#vertex-info").val("")
+          //check if nodes have same sizes
+          let selectedArray = Array.from(window.selectedNodes)
+          let checkWidth =  selectedArray.every( node => node.graphics.lineWidth === selectedArray[0].graphics.lineWidth)
+          let checkInfo = selectedArray.every( node => node.info === selectedArray[0].info)
+          if(checkWidth){
+            $('#myModal').find("#modal-size").val(node.graphics.lineWidth.toString());
+          }
+          console.log(checkInfo)
+          if(checkInfo){$('#myModal').find("#vertex-info").val(node.info.toString());}
+
+          $('#myModal').on('show.bs.modal', function (event) {
+          //clone and replace the element to remove all event listeners
+          //if we dont remove them we can right click on 5 different nodes
+          //and the specific function will be triggered for all of them 
+          //after pressing the button
+          var old_element = document.getElementById("apply");
+          var new_element = old_element.cloneNode(true);
+          old_element.parentNode.replaceChild(new_element, old_element);
+          var old_element1 = document.getElementById("delete");
+          var new_element1 = old_element1.cloneNode(true);
+          old_element1.parentNode.replaceChild(new_element1, old_element1);
+
+          var modal = $(this);
+
+
+          //save attributes
+          const save = () => {
+            let color = modal.find(".modal-color").val().toString();
+            let newlabel = modal.find("#modal-label").val();
+            let size = $('#myModal').find("#modal-size").val();
+            let info = modal.find('#vertex-info').val()
+           
+            Graph.pauseAnimation()
+            if(newlabel!=""){Graph.nodeLabel(ele => window.selectedNodes.has(ele) ? ele.label = newlabel : ele.label = ele.label)}
+            Graph.nodeColor(ele => window.selectedNodes.has(ele)? ele.graphics.fill = color : ele.graphics.fill = ele.graphics.fill)
+            if(size!=""){Graph.nodeVal(ele => window.selectedNodes.has(ele)? ele.graphics.lineWidth = size : ele.graphics.lineWidth = ele.graphics.lineWidth)}
+            if(info!=""){
+              const {links,nodes} = Graph.graphData()
+              nodes.forEach(el=>{
+                window.selectedNodes.has(el)?el.info=info:el.info=el.info
+              })
+              Graph.graphData({nodes,links})
+            }
+            Graph.resumeAnimation()
+            
+            Graph.nodeVal(node=>nodeSize(node))
+                 .nodeLabel(node => node.label ? node.label = node.label : node.label = node.id)
+                 .nodeColor(node => nodeColoring(node));
+            
+            modal.modal('hide');
+            
+          }
+
+          const rem = () => {
+            let toBedeleted = Array.from(window.selectedNodes)
+            window.selectedNodes.clear()
+            toBedeleted.forEach(node=>removeNode(node))
+            modal.modal("hide");
+          }
+          
+          $("#apply").click(save)
+          $("#delete").click(rem)
+         
+
+        })
+        $('#myModal').modal('show')
+      }else{
+      const changeModalAttributes = () => {
+          $('#myModal').find('.modal-title').text("Node: " + node.label)
+          $('#modal-label').val(node.label)
+          $('#modal-color').val(node.graphics.fill?node.graphics.fill.toString():"black")
+          $("#modal-size").val(node.graphics.lineWidth.toString())
+          $('#vertex-info').val(node.info?node.info:"")
+
+        }
+        changeModalAttributes();
+        
+
+        $('#myModal').on('show.bs.modal', function (event) {
+          //clone and replace the element to remove all event listeners
+          //if we dont remove them we can right click on 5 different nodes
+          //and the specific function will be triggered for all of them 
+          //after pressing the button
+          var old_element = document.getElementById("apply");
+          var new_element = old_element.cloneNode(true);
+          old_element.parentNode.replaceChild(new_element, old_element);
+          var old_element1 = document.getElementById("delete");
+          var new_element1 = old_element1.cloneNode(true);
+          old_element1.parentNode.replaceChild(new_element1, old_element1);
+
+          var modal = $(this);
+
+          //save attributes
+          const save = () => {
+            let color = modal.find(".modal-color").val().toString();
+            let newlabel = modal.find("#modal-label").val();
+            let size = modal.find("#modal-size").val();
+            let info = modal.find('#vertex-info').val();
+            const {links,nodes} = Graph.graphData()
+            
+            nodes.forEach(el=>{
+            el.index===node.index?el.info=info:el.info=el.info
+            })
+            Graph.graphData({nodes,links})
+              .nodeLabel(ele => ele.index == node.index ? ele.label = newlabel : ele.label = ele.label)
+              .nodeColor(ele => ele.index == node.index ? ele.graphics.fill = color : ele.graphics.fill = ele.graphics.fill)
+              .nodeVal(ele => ele.index == node.index ? ele.graphics.lineWidth = size : ele.graphics.lineWidth = ele.graphics.lineWidth);
+            modal.modal('hide');
+          }
+
+          const rem = () => {
+            removeNode(node)
+            modal.modal("hide");
+          }
+
+          $("#apply").click(save)
+          $("#delete").click(rem)
+        })
+        $('#myModal').modal('show')
+      }
+    }
+    const openLinkModal = (link, event) => {
+      if(window.selectedLinks.size>1){
+        $('#linkModal').find('.modal-title').text("Number of Links selected " + window.selectedLinks.size)
+         
+        $('#linkModal').on('show.bs.modal', function (event) {
+          //clone and replace the element to remove all event listeners
+          //if we dont remove them we can right click on 5 different nodes
+          //and the specific function will be triggered for all of them 
+          //after pressing the button
+          var old_element = document.getElementById("apply-link");
+          var new_element = old_element.cloneNode(true);
+          old_element.parentNode.replaceChild(new_element, old_element);
+          var old_element1 = document.getElementById("delete-link");
+          var new_element1 = old_element1.cloneNode(true);
+          old_element1.parentNode.replaceChild(new_element1, old_element1);
+          var modal = $(this);
+
+
+          const save = () => {
+            let color = modal.find("#modal-link-color").val().toString();
+            let newlabel = modal.find("#modal-link-label").val();
+            let width = modal.find("#modal-link-width").val();
+            let lineType = modal.find("#modal-link-type").val();
+            const {links,nodes} = Graph.graphData()
+            links.forEach((link)=>{
+              if(window.selectedLinks.has(link)){
+                link.graphics.stipple=lineType;
+              }
+            })
+            Graph.graphData({nodes,links});
+            
+
+            
+            Graph.pauseAnimation()
+                .linkLabel(ele => window.selectedLinks.has(ele) ? ele.label = newlabel : ele.label = ele.label)
+                .linkColor(ele => window.selectedLinks.has(ele)? ele.graphics.fill = color : ele.graphics.fill = ele.graphics.fill)
+                .linkWidth(ele =>  window.selectedLinks.has(ele)? ele.graphics.lineWidth = width : ele.graphics.lineWidth = ele.graphics.lineWidth)
+                .resumeAnimation();
+      
+            Graph.linkColor(link => linkColoring(link))
+                 .linkWidth(link => link.graphics.lineWidth?link.graphics.lineWidth=link.graphics.lineWidth : link.graphics.lineWidth= 1)
+                 .linkLineDash((link) =>linkType(link) );
+
+            modal.modal("hide");
+          }
+          const rem = () => {
+            let toBeDeleted = Array.from(window.selectedLinks)
+            window.selectedLinks.clear()
+            toBeDeleted.forEach(link=>removeLink(link))
+            modal.modal("hide");
+          }
+
+          $("#apply-link").click(save);
+          $("#delete-link").click(rem);
+
+          
+
+        });
+        $('#linkModal').modal('show')
+
+      }else{
+
+      const changeModalAttributes = () => {
+          $('#linkModal').find('.modal-title').text("Link: " + link.label)
+          $('#modal-link-label').val(link.label)
+          $('#modal-link-color').val(link.graphics.fill?link.graphics.fill.toString():"black")
+          $("#modal-link-width").val(link.graphics.lineWidth?link.graphics.lineWidth:1)
+          $("#modal-link-type").val(link.graphics.stipple?link.graphics.stipple:"Solid")
+
+        }
+        changeModalAttributes();
+
+        
+        $('#linkModal').on('show.bs.modal', function (event) {
+          //clone and replace the element to remove all event listeners
+          //if we dont remove them we can right click on 5 different nodes
+          //and the specific function will be triggered for all of them 
+          //after pressing the button
+          var old_element = document.getElementById("apply-link");
+          var new_element = old_element.cloneNode(true);
+          old_element.parentNode.replaceChild(new_element, old_element);
+          var old_element1 = document.getElementById("delete-link");
+          var new_element1 = old_element1.cloneNode(true);
+          old_element1.parentNode.replaceChild(new_element1, old_element1);
+          var modal = $(this);
+
+
+          //save attributes
+          const save = () => {
+            let color = modal.find("#modal-link-color").val().toString();
+            let newlabel = modal.find("#modal-link-label").val();
+            let width = modal.find("#modal-link-width").val();
+            let lineType = modal.find("#modal-link-type").val();
+            link.graphics.stipple=lineType;
+            link.graphics.lineWidth = width;
+            
+            Graph.linkLabel(
+              ele => ele.index == link.index ?
+                ele.label = newlabel :
+                ele.label ? ele.label = ele.label : ele.label = ele.index)
+              .linkColor(ele => ele.index == link.index ? ele.graphics.fill = color : ele.graphics.fill = ele.graphics.fill);
+              //.linkWidth(ele => ele.index == link.index ? ele.graphics.lineWidth = width : ele.width ? ele.width = ele.width : ele.width = 1)
+
+
+            modal.modal('hide');
+          }
+          const changeLebel = () => {
+            modal.find('.modal-title').text("Edge: " + link.label.toString())
+            modal.find("#modal-link-label").val(link.label)
+          }
+
+          function rem() {
+            removeLink(link);
+            modal.modal("hide");
+          }
+
+          $("#apply-link").click(save);
+          $("#delete-link").click(rem);
+
+          link.label ? changeLebel() : modal.find('.modal-title').text("Edge: " + link.index)
+          link.graphics.fill ? modal.find('.modal-color').val(link.graphics.fill.toString()) : modal.find('.modal-color').val(
+            "#f1f1f1")
+          link.width ? modal.find("#modal-link-width").val(link.width) : ""
+          
+        })
+      
+        $('#linkModal').modal('show')
+      }
+    
+  
+    }
+    const linkType=(link)=>{
+      switch(link.graphics.stipple) {
+          case "Solid":
+            return []
+            break;
+          case "Dashed":
+            return [5,2] 
+            break;
+          case "Dashdotdot":
+            return  [10, 1, 1, 1, 1, 1]
+            break;
+          case "Dashdot":
+            return  [10, 1, 1, 1]
+            break;
+          default:
+            return []
+        }
+    }
+    const nodePaint=(node, ctx, globalScale) => { 
+        // add ring just for selected nodes
+        if(window.selectedNodes.has(node)){
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, Number(node.graphics.lineWidth)+5 , 0, 2 * Math.PI, false);
+          ctx.fillStyle="rgba(191, 191, 63, 0.5)";
+          ctx.fill();
+        }
+      
+        //if(node.graphics.type==="rectangle"){
+         // ctx.fillStyle = node.graphics.fill;
+        //  node.graphics.lineWidth=(node.graphics.w+node.graphics.h)/2
+        //  ctx.fillRect(node.graphics.x - (node.graphics.h/2), node.graphics.y - (node.graphics.w/2), node.graphics.w, node.graphics.h);  // rectangle
+        //}
+        //if(true){
+        //  ctx.beginPath();
+        // ctx.arc(node.x, node.y, Number(node.graphics.lineWidth) , 0, 2 * Math.PI, false);
+        //  ctx.fillStyle=node.graphics.fill;
+        //  ctx.fill();
+       // }
+        if($("#vertex-labels").is(":checked") ){
+        const label = node.label?node.label:node.id;
+        
+        let scale = globalScale < 20 ? 50 : globalScale
+        const fontSize =  (scale)*0.03 * (node.graphics.lineWidth)
+
+        
+        ctx.font = ` bold ${fontSize}pt Calibri`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "white";
+        ctx.fillText(label, node.x, node.y ,[Number(node.graphics.lineWidth)+3]);
+        
+        }
+      }
+
+      const drawLink=(link, ctx,globalScale)=>{
+                // draw a highlighting yellow line
+                if(window.selectedLinks.has(link)){
+                ctx.lineWidth = (link.graphics.lineWidth+10)/globalScale;
+                ctx.beginPath();
+                ctx.moveTo(link.source.x, link.source.y);
+                ctx.lineTo(link.target.x, link.target.y);
+                ctx.strokeStyle = "rgba(191, 191, 63, 0.5)";
+                ctx.stroke();
+              }
+      }
+
+    const clickOnNode = (node, event) => {
+      //add to selected
+      
+      if ( window.keysPressed["Control"]===true) { // multi-selection
+            window.selectedNodes.has(node) ? window.selectedNodes.delete(node) : window.selectedNodes.add(node);
+            //drawNodes()
+        
+          } else { // single-selection
+            const untoggle = window.selectedNodes.has(node) && window.selectedNodes.size === 1;
+            window.selectedNodes.clear();
+            !untoggle && window.selectedNodes.add(node);
+          } 
+           
+    }
+
+    const clickOnLink = (link, event) =>{
+     
+      if ( window.keysPressed["Control"]===true) { // multi-selection
+          window.selectedLinks.has(link) ? window.selectedLinks.delete(link) : window.selectedLinks.add(link);
+           
+        }else { // single-selection
+            const untoggle = window.selectedLinks.has(link) && window.selectedLinks.size === 1;
+            window.selectedLinks.clear();
+            !untoggle && window.selectedLinks.add(link);
+            }
+        }
+
+    const addNode = (e, Graph) => {
+      let canvas = document.getElementsByTagName('canvas')[0];
+      const rect = canvas.getBoundingClientRect()
+
+
+      const x = e.clientX - 250//rect.left;
+      const y = e.clientY -62// rect.top;
+
+
+      let node = Graph.screen2GraphCoords(x, y);
+      let { nodes, links } = window.Graph.graphData();
+      let  max;
+      if(nodes.length>1){
+        max = nodes.reduce((prev, current) => (prev.id > current.id) ? prev.id : current.id)
+      }else{
+        max = nodes.length
+      }
+     
+      node.id =  parseInt(max + 1) //set id
+      node.label = node.id;
+      node.graphics={};
+      node.graphics.fill="black";//set default color
+      nodes.push(node);
+      // add links to any nearby nodes
+      nodes.forEach(target => {
+          let x = target.x - node.x,
+          y = target.y - node.y;
+        if (Math.sqrt(x * x + y * y) < 50 && target.x!==node.x) {
+          links.push({
+            graphics:{
+              fill:"black",
+              lineWidth:2
+            },
+            source: node,
+            target: target
+          });
+        }
+
+      });
+
+
+      Graph.graphData({
+        nodes,
+        links
+      });
+      Graph.d3ReheatSimulation();
+      
+
+    }
+  
+    window.Graph = Graph;
+    window.nodePaint= nodePaint
+    window.drawLink = drawLink
+    window.setRadialLayout=setRadialLayout;
+    window.deleteAllNodesAndEdges=deleteAllNodesAndEdges;
+    
+   
+
+  }
+  $(document).ready(function () {
+
+    
+
+    //check local storage if there is data
+    //load from local storage
+    store?visualize(store):visualize(data);
+    setTimeout(function(){window.Graph.zoomToFit(1000, 70, node => true) }, 200);
+
+    //navButton popover
+    $('[data-toggle="popover"]').popover({
+        placement : 'bottom',
+        trigger: 'hover'
+    });
+    
+    addEventListeners(window.Graph);
+    
+    
+
+  
+    
+    let boxSelect;
+    let boxSelectStart;
+   // forceGraph element is the element provided to the Force Graph Library
+   document.getElementById('graph').addEventListener('pointerdown', (e) => {
+     
+      if (window.keysPressed["s"]) {
+        e.preventDefault();
+        boxSelect = document.createElement('div');
+        boxSelect.id = 'boxSelect';
+        boxSelect.style.left = (e.clientX).toString() + 'px';
+        boxSelect.style.top = (e.clientY).toString() + 'px';
+        boxSelectStart = {
+          x: e.clientX,
+          y: e.clientY
+        };
+        // app element is the element just above the forceGraph element.
+        document.getElementById('top-layer').appendChild(boxSelect);
+      }
+    });
+
+    document.getElementById('graph').addEventListener('pointermove', (e) => {
+      if (window.keysPressed["s"] && boxSelect) {
+        e.preventDefault();
+      
+        if ((e.clientX) < boxSelectStart.x) {
+          boxSelect.style.left = (e.clientX).toString() + 'px';
+          boxSelect.style.width = (boxSelectStart.x - (e.clientX)).toString() + 'px';
+        } else {
+          boxSelect.style.left = boxSelectStart.x.toString() + 'px';
+          boxSelect.style.width = ((e.clientX) - boxSelectStart.x).toString() + 'px';
+        }
+        if ((e.clientY) < boxSelectStart.y) {
+          boxSelect.style.top = (e.clientY).toString() + 'px';
+          boxSelect.style.height = (boxSelectStart.y - (e.clientY)).toString() + 'px';
+        } else {
+          boxSelect.style.top = (boxSelectStart.y).toString() + 'px';
+          boxSelect.style.height = ((e.clientY) - boxSelectStart.y).toString() + 'px';
+        }
+      } else if (boxSelect) {
+        boxSelect.remove();
+     
+      }
+    
+    });
+    const mousemove = (e)=>{
+      if (window.keysPressed["s"] && boxSelect) {
+        e.preventDefault();
+        let left, bottom, top, right;
+        if ((e.clientX) < boxSelectStart.x) {
+          left = (e.clientX);
+          right = boxSelectStart.x;
+        } else {
+          left = boxSelectStart.x;
+          right = (e.clientX);
+        }
+        if ((e.clientY) < boxSelectStart.y) {
+          top = (e.clientY);
+          bottom = boxSelectStart.y;
+        } else {
+          top = boxSelectStart.y;
+          bottom = (e.clientY);
+        }
+        runBoxSelect(left, bottom, top, right);
+        boxSelect.remove();
+      } else if (boxSelect) {
+        boxSelect.remove();
+      }
+  
+    }
+    document.getElementById('graph').addEventListener('pointerup',(e)=>{mousemove(e)})
+
+    const runBoxSelect = (left, bottom, top, right) => {
+      let canvas = document.getElementsByTagName('canvas')[0];
+      const rect = canvas.getBoundingClientRect()
+      //rect.left=250px because of sidebar
+      //rect.top=62px because of navigation
+      const tl = window.Graph.screen2GraphCoords(left-rect.left, top-rect.top);
+      const br = window.Graph.screen2GraphCoords(right-rect.left, bottom-rect.top);
+      
+      let { nodes, links } = window.Graph.graphData()
+      window.Graph.d3ReheatSimulation();
+      nodes.forEach(node => {
+         if (tl.x < node.x && node.x < br.x && br.y > node.y && node.y > tl.y) {
+          window.selectedNodes.add(node);
+         };
+      });
+
+      links.forEach(link=>{
+        if(window.selectedNodes.has(link.source)&& window.selectedNodes.has(link.target) ){
+          window.selectedLinks.add(link);
+        }
+      })
+    }
+    
+  });
+
+  
+
+
+
+</script>
+
+
+{% endblock %}

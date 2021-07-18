@@ -1,0 +1,138 @@
+{% extends 'graph_visualization/base.html' %}
+{% block home %}
+{% include "graph_visualization/topNav.html" %}
+{% load static %}
+
+  
+
+
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+
+        <img src="{% static 'images/grapp-logo.png' %}" alt="logo">
+
+        <div class="col-md-12">
+            <!-- Nav tabs 
+            <div class="tab d-flex justify-content-center mt-4">
+                <button class="tablinks active" onclick="openForm(event, 'typeForm')">Input a graph manually </button>
+                <button class="tablinks" onclick="openForm(event, 'uploadForm')"> or by drag-and-drop</button>
+            </div>-->
+
+
+
+
+            <div id="typeForm" class="tabcontent" style="display: block;margin-top:30px">
+                <form action="{% url 'graph' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group blue-border-focus mt-5">
+                        <textarea class="form-control" name="text" style="font-size: 90%" rows="11" spellcheck="false"
+                            autofocus="autofocus" maxlength="10000000"
+                            placeholder="Paste a graph in the graph6, GML, GraphML, Leda, Edge List, GEXF,CSV,TSV,DOT or Sparse6 format..."></textarea>
+                    </div>
+
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2 pt-0">Rendering Options</legend>
+
+                        <div class="col-md-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio" id="gridRadios1" value="2D"
+                                    checked>
+                                <label class="form-check-label" for="gridRadios1">
+                                    2D
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio" id="gridRadios2" value="3D">
+                                <label class="form-check-label" for="gridRadios2">
+                                    3D
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <select class="custom-select" id="selectSample">
+                                  <option selected>Select Sample Graph...</option>
+                                  <option value="mao">mao.gml</option>
+                                  <option value="mao2">mao2.gml</option>
+                                  <option value="radial">radial layout</option>
+                                  <option value="doublewheelvariant">doublewheelvariant.gml</option>
+                                  <option value="1">Cubic Girth5</option>
+                                  <option value="2">Snark</option>
+                                  <option value="3">Tree</option>
+                                  <option value="ramsey">Minimal Ramsey(3,9)-graph</option>
+                                  <option value="cubic">Cubic vertex-transitive</option>
+                                  <option value="hanoi">Hanoi Exchange Graph 5 Discs</option>
+                                  
+                                </select>
+                              </div>
+                        </div>
+                        <div class="col-md-4">
+                            <button id="submit" type="submit" class="btn btn-primary">submit</button>
+                        </div>
+                </form>
+            </div>
+
+            <hr class="mb-2">
+
+            <div id="uploadForm" class="tabcontent" style="display:block;margin-top:30px">
+               
+                <form id="dropFileForm" class="" action="{% url 'graph' %}"enctype="multipart/form-data"  method="post"  >
+                    {% csrf_token %}
+                    <div class="radio"><h3>Rendering Options</h3>
+                        <div class="row d-flex justify-content-center">
+                            
+                          <div class="col-md-2 mt-2">
+                            <label>
+                              <input id="2DFile" name="radio" type="radio" value="2D" checked> 
+                              2D
+                            </label>
+                          </div>
+                          <div class="col-md-2 mt-2">
+                            <label>
+                              <input id="3DFile"  name="radio" type="radio" value="3D">
+                              3D
+                            </label>
+                          </div>
+                        </div>
+                     </div>
+                      
+                    <input class="mt-4" type="file" name="file" id="fileInput" accept=".gml,.g6,.graphml,.s6,.lgr,.gexf,.tsv,.csv,.gv,.dot,.txt"  onchange="saveFileToLocalStorage(event)">
+
+                    <label for="fileInput" id="fileLabel" ondragover="overrideDefault(event)"
+                        ondragenter="overrideDefault(event)"
+                        ondragleave="overrideDefault(event);" ondrop="overrideDefault(event);saveFileToLocalStorage(event);">
+                        <i class="fa fa-download fa-5x"></i>
+                        <br>
+                        <span id="fileLabelText">
+                            Choose a file or drag it here
+                        </span>
+                        <br>
+                        <span id="uploadStatus"></span>
+                    </label>
+                </form>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    Developed by: <a href="#">I. Ivanov</a> & <a href="https://www3.tuhh.de/e11/schmidt/">Jens M. Schmidt</a>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            $(function () {
+                localStorage.clear();
+
+                $("#selectSample").change((e)=> {
+                    
+                    loadSampleGraph(e.target.value)
+                });
+
+                
+            });
+                
+        </script>
+        {% endblock %}

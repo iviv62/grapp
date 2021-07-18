@@ -1,0 +1,693 @@
+Creator "ogdf::GraphIO::writeGML"
+graph
+[
+	directed	0
+	node
+	[
+		id	0
+		label	"3,0"
+		graphics
+		[
+			x	292.0000000000
+			y	290.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#FF0000"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	1
+		label	"11,1"
+		graphics
+		[
+			x	351.0000000000
+			y	292.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#00FFFF"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	2
+		label	"10,2"
+		graphics
+		[
+			x	151.0000000000
+			y	53.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#00FF00"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	3
+		label	"8,3"
+		graphics
+		[
+			x	166.0000000000
+			y	30.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#FF0000"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	4
+		label	"5,4"
+		graphics
+		[
+			x	136.0000000000
+			y	290.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#FF0000"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	5
+		label	"12,5"
+		graphics
+		[
+			x	390.0000000000
+			y	187.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#00FFFF"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	6
+		label	"7,6"
+		graphics
+		[
+			x	30.0000000000
+			y	31.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#FF0000"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	7
+		label	"4,7"
+		graphics
+		[
+			x	239.0000000000
+			y	385.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#FF0000"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	8
+		label	"6,8"
+		graphics
+		[
+			x	57.0000000000
+			y	152.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#FF0000"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	9
+		label	"9,9"
+		graphics
+		[
+			x	267.0000000000
+			y	147.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#FF0000"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	10
+		label	"2,10"
+		graphics
+		[
+			x	245.0000000000
+			y	234.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#FF0000"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	node
+	[
+		id	11
+		label	"1,11"
+		graphics
+		[
+			x	134.0000000000
+			y	148.0000000000
+			label [ x 0.0000000000 y 4.0000000000 ]
+			w	30.0000000000
+			h	15.0000000000
+			fill	"#FF0000"
+			fillbg	"#000000"
+			outline	"#000000"
+			pattern	"Solid"
+			stipple	"Solid"
+			lineWidth	1.0000000000
+			type	"Ellipse"
+		]
+	]
+	edge
+	[
+		source	2
+		target	11
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	6
+		target	11
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	3
+		target	11
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	10
+		target	11
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	9
+		target	11
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	8
+		target	11
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	5
+		target	10
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	1
+		target	10
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	7
+		target	10
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	0
+		target	10
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	4
+		target	10
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FF0000"
+		]
+	]
+	edge
+	[
+		source	0
+		target	4
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FFFF00"
+		]
+	]
+	edge
+	[
+		source	0
+		target	5
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FFFF00"
+		]
+	]
+	edge
+	[
+		source	0
+		target	7
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FFFF00"
+		]
+	]
+	edge
+	[
+		source	0
+		target	9
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FFFF00"
+		]
+	]
+	edge
+	[
+		source	1
+		target	7
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FFFF00"
+		]
+	]
+	edge
+	[
+		source	4
+		target	7
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#00FF00"
+		]
+	]
+	edge
+	[
+		source	4
+		target	8
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FFFF00"
+		]
+	]
+	edge
+	[
+		source	6
+		target	8
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FFFF00"
+		]
+	]
+	edge
+	[
+		source	2
+		target	8
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FFFF00"
+		]
+	]
+	edge
+	[
+		source	3
+		target	8
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#FFFF00"
+		]
+	]
+	edge
+	[
+		source	2
+		target	6
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#00FF00"
+		]
+	]
+	edge
+	[
+		source	3
+		target	6
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#00FF00"
+		]
+	]
+	edge
+	[
+		source	3
+		target	9
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#00FF00"
+		]
+	]
+	edge
+	[
+		source	1
+		target	9
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#00FF00"
+		]
+	]
+	edge
+	[
+		source	2
+		target	9
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#0000FF"
+		]
+	]
+	edge
+	[
+		source	5
+		target	9
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#00FF00"
+		]
+	]
+	edge
+	[
+		source	1
+		target	5
+		label ""
+		weight	1.0000000000
+		intWeight	1
+		graphics
+		[
+			type	"line"
+			arrow	"none"
+			stipple	"Solid"
+			lineWidth	2.0000000000
+			fill "#0000FF"
+		]
+	]
+]
