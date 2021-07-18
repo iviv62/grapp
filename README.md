@@ -81,18 +81,28 @@ Once activated, the virtual environment’s bin directory will be added at the b
 
 
 ## Installing requirements.txt
-The next step is to extract main.rar to a folder of your choice. It holds all of grapp's source code. All of the dependencies needed by grapp are stored in a `requirements.txt` file.
+All of the dependencies needed by grapp are stored in a `requirements.txt` file.
 run the following command to install them:
 
 ```bash
 pip install -r /path/to/requirements.txt
 ```
 ## Running development server
-After all of the dependencies are successfully installed, navigate to the main folder (if you haven't yet)
+After all of the dependencies are successfully installed, navigate to the main folder where settings.py resides
 
 ```bash
-cd /path/to/main
+cd /path/to/main/main
 ```
+Then create .env which will hold your environmental variables. Specify a Django secret on the first line of the file.
+```bash
+SECRET_KEY="YOUR SECRET KEY"
+```
+You can generate django secret keys by using free services like https://djecrety.ir or run this command to get a key
+
+```bash
+python3.7 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
+
 Run the following command to start development server at http://127.0.0.1:8000/
 
 ```bash
