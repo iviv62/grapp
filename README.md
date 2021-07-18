@@ -11,30 +11,45 @@ Grapp depends on linux to execute binary files. For this reason we would have to
 Installing Python 3.7 on Ubuntu with apt is a relatively straightforward process. Start WSL and run the following commands.
 
 
-1. Start by updating the packages list and installing the prerequisites:
+1. First, update the packages list and install the packages necessary to build Python source:
 ```bash
   sudo apt update
 ```
 
 ```bash
-  sudo apt install software-properties-common
+  sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev wget libbz2-dev
 ```
-2. Next, add the deadsnakes PPA to your sources list:
+2. Download the latest release’s source code from the Python download page using the following wget command:
 
 ```bash
-  sudo add-apt-repository ppa:deadsnakes/ppa
+  wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
 ```
-When prompted press `Enter` to continue:
+Once the download is completed, extract the gzipped tarball :
 
 ```bash
-  Press [ENTER] to continue or Ctrl-c to cancel adding it.
+  tar -xf Python-3.7.4.tgz
 ```
-3. Once the repository is enabled, install Python 3.7 with:
+3. Next, navigate to the Python source directory and run the configure script which will perform a number of checks to make sure all of the dependencies on your system are present:
 
 ```bash
-  sudo apt install python3.7
+ ./configure --enable-optimizations
 ```
-4. At this point, Python 3.7 is installed on your Ubuntu system and ready to be used. You can verify it by typing:
+
+4. Start the Python build process using make
+
+```bash
+ make -j 4
+```
+For faster build time, modify the -j flag according to your processor. If you do not know the number of cores in your processor, you can find it by typing nproc. The system used in this guide has 4 cores, so we are using the -j4 flag.
+
+5.When the build is done, install the Python binaries by running the following command:
+
+```bash
+sudo make altinstall
+```
+Do not use the standard make install as it will overwrite the default system python3 binary.
+
+6. At this point, Python 3.7 is installed on your  system and ready to be used. You can verify it by typing:
 
 ```bash
   python3.7 --version
