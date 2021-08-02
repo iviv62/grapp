@@ -93,7 +93,7 @@ After all of the dependencies are successfully installed, navigate to the main f
 ```bash
 cd /path/to/main/main
 ```
-Create .env file which will hold your environmental variables. Specify a Django secret key on the first line of the file.
+Create a file named ".env" which will hold your environmental variables. Specify a Django secret key on the first line of the file.
 ```bash
 SECRET_KEY=YOUR SECRET KEY
 ```
