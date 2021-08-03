@@ -94,6 +94,7 @@ After all of the dependencies are successfully installed, navigate to the main f
 cd /path/to/main/main
 ```
 Create a file named ".env" which will hold your environmental variables. Specify a Django secret key on the first line of the file.
+Make sure you add ".env" to your git ignore file so you don't commit it!
 ```bash
 SECRET_KEY=YOUR SECRET KEY
 ```
