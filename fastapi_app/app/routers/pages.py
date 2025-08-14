@@ -3,13 +3,14 @@ from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
 from sqlalchemy.orm import Session
+import os
 
 from .. import utils, crud
 from ..database import SessionLocal
 
 router = APIRouter()
 
-templates = Jinja2Templates(directory=str(Path(__file__).parent.parent / "templates"))
+templates = Jinja2Templates(directory=os.path.abspath(os.path.join(os.path.dirname(__file__), '../../main/templates')))
 
 def get_db():
     db = SessionLocal()
@@ -36,7 +37,7 @@ async def json_editor(request: Request):
 
 @router.get("/about/license.txt", response_class=PlainTextResponse)
 async def license_page():
-    license_path = Path(__file__).parent.parent / "templates/graph_visualization/license.txt"
+    license_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../main/templates/graph_visualization/license.txt'))
     with open(license_path) as f:
         content = f.read()
     return PlainTextResponse(content)

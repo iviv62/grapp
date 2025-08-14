@@ -8,6 +8,7 @@ from pathlib import Path
 
 from .. import schemas, crud, utils
 from ..database import SessionLocal
+from typing import List
 
 router = APIRouter(prefix="/api")
 
@@ -140,7 +141,17 @@ async def load_new_content(file: UploadFile = File(...)):
         graphData = utils.convertGraph(data)
         if graphData == "error":
             raise HTTPException(status_code=400, detail="Invalid graph format")
-        return {"data": json.loads(graphData)}
+        return json.loads(graphData)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/graph/from-text")
+async def from_text(text: str = Form(...)):
+    try:
+        graphData = utils.convertGraph(text)
+        if graphData == "error":
+            raise HTTPException(status_code=400, detail="Invalid graph format")
+        return json.loads(graphData)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -197,9 +208,13 @@ async def get_command_parameters(name: str = Form(...), db: Session = Depends(ge
 async def get_sample_graph(name: str = Form(...)):
     file_path = Path(__file__).parent.parent.parent / "sample_graphs" / f"{name}.txt"
     if not file_path.exists():
-        raise HTTPException(status_code=44, detail="Sample graph not found")
+        raise HTTPException(status_code=404, detail="Sample graph not found")
 
     with open(file_path, "r") as f:
         graph_string = f.read()
 
     return {"data": graph_string}
+
+@router.get("/commands", response_model=List[schemas.Command])
+def get_all_commands(db: Session = Depends(get_db)):
+    return crud.get_commands(db)
