@@ -1,0 +1,199 @@
+{% block modals %}
+
+<!-- Large modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Label</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="modal-color" class="col-form-label">Color</label>
+            <input type="color" id="modal-color" class="form-control modal-color" value="#000000">
+
+            <label for="modal-label" class="col-form-label">Label</label>
+            <input type="text" id="modal-label" class="form-control" value="">
+
+            <label for="modal-size" class="col-form-label">Size</label>
+            <input type="text" id="modal-size" class="form-control" value="">
+
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Vertex Information:</label>
+            <textarea class="form-control" id="vertex-info"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="delete" class="btn btn-danger">Delete</button>
+        <button type="button" id="apply" class="btn btn-primary">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--link modal-->
+<div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="linkLabel">Label</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="modal-link-color" class="col-form-label">Color</label>
+            <input type="color" id="modal-link-color" class="form-control modal-color" value="#000000">
+            <label for="modal-link-width" class="col-form-label">Width</label>
+            <input type="number" id="modal-link-width" class="form-control" value="">
+            <label for="" class="col-form-label">Line type</label>
+            <select name="" id="modal-link-type" class="form-control">
+              <option value="Solid">Solid</option>
+              <option value="Dashed">Dashed</option>
+              <option value="Dashdotdot">Dashdotdot</option>
+              <option value="Dashdot">Dashdot</option>
+            </select>
+
+            <label for="modal-link-label" class="col-form-label">Label</label>
+            <input type="text" id="modal-link-label" class="form-control" value="">
+
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="delete-link" class="btn btn-danger">Delete</button>
+        <button type="button" id="apply-link" class="btn btn-primary">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Command Parameter modal-->
+<div class="modal fade" id="parameterModal" tabindex="-1" role="dialog" aria-labelledby="parameterModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Please select a command!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="parameter-form" name="parameter">
+          <div class="row">
+            <div id="keys" class="col-md-6"></div>
+            <div id="values" class="col-md-6"></div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="applyParam" type="button" class="btn btn-primary">apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- share graph modal-->
+<div class="modal fade"  id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Share link</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+            <div class="col-md mt-2">
+              <input id="shareInput" class="w-100" type="text" class="mt-2" placeholder="test">
+            </div>
+            <button class="navBtn col-md-2" onclick="copyText()">copy</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Key Bindings modal-->
+<div class="modal fade"  id="KeyBindingsModal" tabindex="-1" role="dialog" aria-labelledby="KeyBindingsModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Key Bindings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex mt-2">
+              <span class="align-self-center" style="color:black;">Select or Deselect Vertices/Edges</span>
+              <div class="d-flex justify-content-end flex1">
+                <div class="key">Ctrl</div> <span class="align-self-center m-2" style="color:black;">+</span><div class="key">left click</div>
+              </div>
+        </div>
+
+        <div class="d-flex mt-2">
+          <span class="align-self-center" style="color:black;">Select a subgraph</span>
+          <div class="d-flex justify-content-end flex1">
+            <div class="key">S</div> <span class="align-self-center m-2" style="color:black;">+</span><div class="key">left click</div><span class="align-self-center m-2" style="color:black;">+</span><div class="key">mouse drag</div>
+          </div>
+      </div>
+
+        <div class="d-flex mt-2">
+          <span class="align-self-center" style="color:black;">Add Vertex</span>
+          <div class="d-flex justify-content-end flex1">
+            <div class="key">Shift</div> <span class="align-self-center m-2" style="color:black;">+</span><div class="key">left click</div>
+          </div>
+      </div>
+
+      <div class="d-flex mt-2">
+        <span class="align-self-center" style="color:black;">Deselect All Vertices and Edges</span>
+        <div class="d-flex justify-content-end flex1">
+          <div class="key">Esc</div>
+        </div>
+    </div>
+
+    <div class="d-flex mt-2">
+      <span class="align-self-center" style="color:black;">Deselect All Vertices</span>
+      <div class="d-flex justify-content-end flex1">
+        <div class="key">Esc</div> <span class="align-self-center m-2" style="color:black;">+</span> <div class="key">V</div>
+      </div>
+  </div>
+
+  <div class="d-flex mt-2">
+    <span class="align-self-center" style="color:black;">Deselect All Edges</span>
+    <div class="d-flex justify-content-end flex1">
+      <div class="key">Esc</div>  <span class="align-self-center m-2" style="color:black;">+</span> <div class="key">E</div>
+    </div>
+  </div>
+
+    <div class="d-flex mt-2">
+      <span class="align-self-center" style="color:black;">Delete Selected Vertices and Edges</span>
+      <div class="d-flex justify-content-end flex1">
+        <div class="key">Del</div>
+      </div>
+  </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock modals %}

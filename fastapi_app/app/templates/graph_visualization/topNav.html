@@ -1,0 +1,77 @@
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  {% if not home%}
+  <button type="button" id="sidebarCollapse" class="btn btn-outline-light default-dark-menu mr-4"><svg height="20pt" viewBox="0 -53 384 384" width="20pt" xmlns="http://www.w3.org/2000/svg"><path fill='gray' d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path fill='gray' d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path fill='gray' d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg></button>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    {% endif %}
+    <a class="navbar-brand" href="/">grApp</a>
+
+    <div class="collapse navbar-collapse" id="navbarText">
+
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/iviv62/grapp">Download</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/manual">Instructions</a>
+        </li>
+
+      </ul>
+      {% if not home%}
+      <div class="btnContainer">
+
+          <input class="mt-4" type="file" name="file" id="fileInput" accept=".gml,.g6,.graphml,.s6,.lgr,.gexf,.tsv,.csv,.gv,.dot,.txt" hidden  onchange="addFiles(event);">
+
+          <label for="fileInput" class="bg-white mr-3" ondragover="overrideDefault(event);"
+              ondragenter="overrideDefault(event);"
+              ondragleave="overrideDefault(event);" ondrop="overrideDefault(event);addFiles(event);">
+              <i class="fa fa-download "></i>
+
+              <span id="fileLabelText">
+                  Choose a file or drag it here
+              </span>
+              <br>
+              <span id="uploadStatus"></span>
+          </label>
+        <button class="navBtn"data-toggle="popover"  title="Key Bindings" onclick="openKeyBindingsModal()"><i class="fas fa-keyboard"></i></button>
+        <button class="navBtn" data-toggle="modal" data-target="#shareModal" onclick="generateShareLink()"><i class="fas fa-share-alt"></i></button>
+        <button id="fit-graph" class="navBtn" data-toggle="popover"  title="Zoom to fit"><i class="fas fa-search-plus"></i></button>
+        <button
+      onclick="SaveData()" class="navBtn" data-toggle="popover"  title="JSON Editor"><i class="fas fa-edit"></i></button>
+      <div class="dropdown show">
+        <a class="btn btn-info dropdown-toggle mr-4 mt-1 fa fa-file-export " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Save as
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a id="gml" class="dropdown-item" href="#">.gml</a>
+          <a class="dropdown-item" href="#" onclick="putImage()"><div class="jpg">.jpg</div></a>
+          <a id="g6" class="dropdown-item" href="#">.g6</a>
+          <a class="dropdown-item" href="#" onclick="sendData('api/sparse6/','graph.s6')">Sparse6</a>
+          <!--<a class="dropdown-item" href="#" onclick="sendData('api/graphml/','graph.graphml')">.graphml</a>
+          <a class="dropdown-item" href="#" onclick="sendData('api/gexf/','graph.gexf')">.gexf</a>
+          <a class="dropdown-item" href="#" onclick="sendData('api/dot/','graph.gv')">.dot</a>-->
+          <a class="dropdown-item" href="#" onclick="sendData('api/edgelist/','graph.txt')">Edgelist</a>
+          <a class="dropdown-item" href="#" onclick="sendData('api/adjacency/','graph.txt')">Adjacency List</a>
+        </div>
+      </div>
+      </div>
+      {% endif %}
+
+
+
+    </div>
+
+
+
+
+
+
+  </nav>
+  {% endblock %}

@@ -1,0 +1,234 @@
+{% extends 'graph_visualization/base.html' %}
+{% block graph %}
+{% include "graph_visualization/topNav.html" %}
+{% load static %}
+<div class="container-fluid" style="max-width:1400px;">
+    <div class="row text-center">
+
+        <h1 class="w-100 m-4">Instructions</h1>
+    </div>
+   <hr class="mt-4">
+    <div class="row mt-4">
+        <div class="col-md-6 text-center">
+
+
+        </div>
+        <div class="col-md-12 ">
+            <h2>Import a Graph</h2>
+            <div class="mt-3 fs-5">
+                Import graphs in the formats:
+               <ul class="ml-4 ">
+                   <li>GML</li>
+                   <li>graphML</li>
+                   <li>graph6</li>
+                   <li>sparse6</li>
+                   <li>LEDA</li>
+                   <li>Edge List</li>
+                   <li>GEXF</li>
+                   <li>CSV</li>
+                   <li>TSV</li>
+                   <i>TSV and CSV should have exactly two columns!</i><br>
+                   <i>The first row of TSV and CSV files is taken as header and does not hold graph information i.e sourceId,targetId!</i>
+                   <li>DOT</li>
+               </ul>
+               by inserting them manually in the text area on the landing page or simply by drag-and-dropping their files to the file area.
+               If the graph syntax is correct and supported by grApp, the file format will automatically be
+               detected and the graph will be visualized. You can use the sample graphs from the dropdown field to test grApp.
+               <img class="mb-2 image-contain" src="{% static 'images/instructions/text_area.png' %}" alt="manual input">
+                <img class="image-contain" src="{% static 'images/instructions/file_upload.png' %}" alt="file upload">
+            </div>
+
+        </div>
+
+
+    </div>
+    <hr class="mt-4 mb-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Interacting With The Graph</h2>
+                <div class="fs-5">
+                    After the graph is visualized, you can interact with the graph by using the toolbar and utilities section or by moving the graph with your mouse
+                    <ul class="p-4">
+                        <li>click and hold left mouse button on a vertex  while dragging to move it's position</li>
+                        <li>click on a vertex or edge to select it. The yellow surounding idicates that the vertex or edge is successfully selected</li>
+                        <li class="mt-2">To select subgraphs simply use the following combination <span class="key">ctrl</span> + <span class="key">left click</span> + <span class="key">drag</span> on the canvas </li>
+                        <div class="text-center mt-2">
+                            <img class="image-contain" height="400px" src="{% static 'images/instructions/selection.png' %}"  alt="Vertex/Edge selection">
+                        </div>
+                        <li>click and hold left mouse button on the canvas while dragging to move your camera view</li>
+                        <li>right clicking on a vertex or edge will open a window from which the user will be able to modify their attributes or delete them</li>
+                        <div class=" text-center mt-2 mb-2">
+                            <img class="image-contain" height="400px" src="{% static 'images/instructions/node_modal.png' %}"  alt="Vertex popup window">
+                        </div>
+                        <li class="mt-2">The user is able to delete subgraphs with <span class="key">Del</span> button if the subgraph is already selected</li>
+                        <li class="mt-2">The user is able to deselect all vertices and edges with <span class="key">Esc</span> button</li>
+                        <li class="mt-2">The user is able to deselect all vertices  by pressing <span class="key">Esc</span> + <span class="key">V</span></li>
+                        <li class="mt-2">The user is able to deselect all edges  by pressing <span class="key">Esc</span> + <span class="key">E</span></li>
+                        <li class="mt-2">Vertices can be added with <span class="key">shift</span>+<span class="key">left click</span> on the canvas</li>
+                        <li>By clicking on the <img height="40px" src="{% static 'images/instructions/fit_graph.png' %}" alt="zoom to fit button"> button the user is able to fit the graph on the screen</li>
+                        <li>The user can replace already existing graph by drag-and-dropping a file on the canvas. If the graph is supported by grApp, it will load automatically</li>
+                        <li>The user can set global attributes such as color,size etc. to vertices/edges from the sidebar</li>
+
+                    </ul>
+                </div>
+        </div>
+    </div>
+
+    <hr class="mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="">Graph Layouts</h2>
+
+                <div class="fs-5">
+                    <p class="mb-4">
+                        GrApp uses D3’s force layout which is physics based simulator used for positioning visual elements and applying forces to them.
+                        It is applied by default for graph types which can't hold position information. If the coordinates of the vertices are set in the graph information,
+                        it is rendered with fixed positions of the vertices and no forces are applied.
+                        <img class="mt-4" src="{% static 'images/instructions/grapp_editor.png' %}" style="width:100%; object-fit: contain;" alt="fixed vertices options">
+                    </p>
+
+                    <p>
+                        To simply switch between the two layouts, you can use the 'fix all vertices' checkbox. You can adjust the layout by your needs and use both Layouts
+                        with the 'fix on move' checkbox which fixes the position of vertex after the user has moved it's positions with the mouse. If the checkbox is not selected it removes the fixed positions after moving the vertex.
+                    </p>
+                    <div class="w-100 text-center">
+                        <img src="{% static 'images/instructions/fix_checkbox.png' %}"  alt="fixed vertices options">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 >Webservice graph6-format</h2>
+                <p class="fs-5">You may use grApp's graph6 webservice to share graphs quickly via link.
+                    To do so, simply use the share button <img src="{% static 'images/instructions/share_button.png' %}"  alt="share button"> on the toolbar. Click on the copy button which will save the generated link to the browsers clipboard from where
+                    you will be able to paste the link in any text editor or application.<br>
+                    <strong>The webservice don't support graphs which are bigger than 1900 symbols</strong>
+                </p>
+                <div class="w-100 text-center">
+                    <img src="{% static 'images/instructions/share_modal.png' %}"  alt="share modal">
+                </div>
+            </div>
+        </div>
+        <hr class="mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-12 fs-5">
+                <h2>Export a graph</h2>
+                <div class="mt-4">
+                    <p>grapp can export graphs in the following formats:
+                        <ul>
+                            <li>
+                                GML
+                            </li>
+                            <li>
+                                JPG
+                            </li>
+                            <li>
+                                graph6
+                            </li>
+                            <li>
+                                sparse6
+                            </li>
+                            <li>
+                                EdgeList
+                            </li>
+                            <li>
+                                Adjacency List
+                            </li>
+                        </ul>
+                        The Following formats are experimental and still not completely supported:
+                        <ul class="mt-4">
+                            <li>
+                                DOT
+                            </li>
+                            <li>
+                                GraphML
+                            </li>
+                            <li>
+                                GEXF
+                            </li>
+                        </ul>
+                        You can export your graph using the <img src="{% static 'images/instructions/save_as.png' %}" alt="save as button"> button on the toolbar
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Json Editor</h2>
+                <p class="fs-5">
+                    The Json Editor is used for editing all the details of the graph like setting custom attributes of Nodes and Edges.
+                    You can access the page by clicking on the <img height="50px" src="{% static 'images/instructions/json_editor_button.png' %}"  alt="acces button "> button on the toolbar
+                    <img class="image-contain mt-4 mb-4" src="{% static 'images/instructions/json_editor.png' %}"  alt="Json Editor">
+                </p>
+            </div>
+        </div>
+        <hr class="mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Key Bindings</h2>
+            <p class="fs-5">
+                <div class="modal-body">
+                    <div class="d-flex mt-2">
+                          <span class="align-self-center" style="color:black;">Select or Deselect Vertices/Edges</span>
+                          <div class="d-flex justify-content-end flex1">
+                            <div class="key">S</div> <span class="align-self-center m-2" style="color:black;">+</span><div class="key">left click</div>
+                          </div>
+                    </div>
+
+                    <div class="d-flex mt-2">
+                      <span class="align-self-center" style="color:black;">Select a subgraph</span>
+                      <div class="d-flex justify-content-end flex1">
+                        <div class="key">Ctrl</div> <span class="align-self-center m-2" style="color:black;">+</span><div class="key">left click</div><span class="align-self-center m-2" style="color:black;">+</span><div class="key">mouse drag</div>
+                      </div>
+                  </div>
+
+                    <div class="d-flex mt-2">
+                      <span class="align-self-center" style="color:black;">Add Vertex</span>
+                      <div class="d-flex justify-content-end flex1">
+                        <div class="key">Shift</div> <span class="align-self-center m-2" style="color:black;">+</span><div class="key">left click</div>
+                      </div>
+                  </div>
+
+                  <div class="d-flex mt-2">
+                    <span class="align-self-center" style="color:black;">Deselect All Vertices and Edges</span>
+                    <div class="d-flex justify-content-end flex1">
+                      <div class="key">Esc</div>
+                    </div>
+                </div>
+
+                <div class="d-flex mt-2">
+                  <span class="align-self-center" style="color:black;">Deselect All Vertices</span>
+                  <div class="d-flex justify-content-end flex1">
+                    <div class="key">Esc</div> <span class="align-self-center m-2" style="color:black;">+</span> <div class="key">V</div>
+                  </div>
+              </div>
+
+              <div class="d-flex mt-2">
+                <span class="align-self-center" style="color:black;">Deselect All Edges</span>
+                <div class="d-flex justify-content-end flex1">
+                  <div class="key">Esc</div>  <span class="align-self-center m-2" style="color:black;">+</span> <div class="key">E</div>
+                </div>
+              </div>
+
+                <div class="d-flex mt-2">
+                  <span class="align-self-center" style="color:black;">Delete Selected Vertices and Edges</span>
+                  <div class="d-flex justify-content-end flex1">
+                    <div class="key">Del</div>
+                  </div>
+              </div>
+
+
+
+                  </div>
+            </p>
+            </div>
+        </div>
+
+</div>
+
+{% endblock %}

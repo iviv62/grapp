@@ -1,0 +1,241 @@
+{% extends 'graph_visualization/base.html' %}
+{% block graph %}
+{% include "graph_visualization/topNav.html" %}
+{% load static %}
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>About</h2>
+          <div class="row mt-4">
+            <div class="col-md-6 ">
+                <h2>What is grApp?</h2>
+                <div class="mt-3 fs-5">
+                    grApp is a web-based editor for complex graphs. It's purpose is to dynamically visualize graphs and help users analyse them.
+                    It supports 2D and 3D rendering and can read graphs from 10 different file formats.
+                </div>
+                <i class="mt-4">© 2021 Jens M. Schmidt, under the </i>
+                <a href="license.txt">Apache-2.0 License</a><br>
+                <i>For more information, feature suggestions or bug reports write us on:</i>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="{% static 'images/grapp-logo.png' %}" alt="get started">
+            </div>
+        </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-12 fs-5">
+          <h2>Known Bugs</h2>
+          <div class="mt-4">
+            grApp is under continuous development.If you encounter a potential bug feel free to cantact us.
+
+            <ul class="mt-4">
+              <li>
+                JSON Editor can't update the graph data correctly on some browsers
+              </li>
+              <li>
+                Graph6 webservice do not support big graphs ( max ~1900 symbols)
+              </li>
+              <li>
+                Not every file could be read correctly
+              </li>
+              <li>
+                Selected area of edges is not displayed correctly when the edge is curved
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-12 fs-5">
+          <h2>Disclaimer of Warranties, Limitations on Data and Hyperlinks</h2>
+          <p>
+            Your use of our Site or Services is solely at Your own risk. The Site and related Services are provided to You on an "As Is" and "As Available" basis, without warranties - to the maximum extent permitted by law - of any kind, whether express or implied, including but not limited to the warranties of merchantability, or fitness for a particular purpose.
+We especially make no warranties that our Site will be available at any particular time or location, or that Your access or use of our Site or Services will be uninterrupted, timely, secure or error-free, or that any defects in the Site will be corrected, or that the Site or any server through which You access our Site is free of viruses or harmful components.
+          </p>
+          <p>
+            We use reasonable efforts to include up-to-date and accurate information in our Site, but we make no representations, warranties, or assurances as to the accuracy, currency or completeness of the information provided. No information or data obtained by You from grApp through our Site shall create a warranty of any kind. grApp shall not be liable for any damages or injury resulting from Your access to, or inability to access, this Site, or from Your reliance on any information provided at this Site or at any website to which this Site may post a hyperlink or reference.
+          </p>
+          <p>
+            grApp is not responsible for the content or practices of third party websites that may be linked to this Site. Such links or pointers to other websites do not constitute an endorsement or approval by grApp neither of the organizations that operate such websites nor on the content, privacy policies or other terms of use on such websites.
+
+No Third Party Licensor will have any obligation or liability to You as a result of Your use of our Services. grApp however agrees to pass through any warranties for Third Party Software made by the Third Party Licensor. grApp makes and You receive no other warranty with respect to Third Party Software, neither express nor implied.
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-12 fs-5">
+          <h2>Information Collection and Use</h2>
+          <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>
+          <h3>Types of data collected</h3>
+          <ul>
+            <li>
+              Cookies
+            </li>
+            <li>
+              Uploaded graph data
+            </li>
+          </ul>
+          <h4>Cookies</h4>
+          <p>Cookies are files with a small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device.
+            You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.
+          </p>
+          <p>
+            Examples of Cookies we use:
+            <ul>
+              <li>
+                Security Cookies. We use Security Cookies for security purposes.
+              </li>
+            </ul>
+          </p>
+          <h4>Uploaded graph data</h4>
+          <p>When you import a graph by using grApp services, it is temporary stored on our servers.</p>
+          <h2>Security of Data</h2>
+          <p>
+            The security of your data is important to us but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+    <table class="table container-fluid" style="max-width: 1200px;">
+      <h2 class="text-center mt-4">External libraries</h2>
+        <thead>
+          <tr>
+            <th scope="col">Library name</th>
+            <th scope="col">language</th>
+            <th scope="col">git link</th>
+            <th scope="col">License</th>
+            <th scope="col">description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">force-graph 2D</th>
+            <td>JavaScipt</td>
+            <td >https://github.com/vasturiano/force-graph</td>
+            <td>MIT License</td>
+            <td>Force-directed graph rendered on HTML5 canvas.</td>
+          </tr>
+          <tr>
+            <th scope="row">Bootstrap</th>
+            <td>JS/CSS</td>
+            <td>https://github.com/twbs/bootstrap</td>
+            <td>MIT License</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">jQuery</th>
+            <td>JavaScipt</td>
+            <td>https://github.com/jquery/jquery</td>
+            <td>MIT License</td>
+          </tr>
+          <tr>
+            <th scope="row">Popper.js</th>
+            <td>JavaScipt</td>
+            <td>https://github.com/popperjs/popper-core</td>
+            <td>MIT License</td>
+            <td>Positioning tooltips and popovers is difficult. Popper is here to help!</td>
+          </tr>
+          <tr>
+            <th scope="row">FontAwesome</th>
+            <td>Icons</td>
+            <td>https://github.com/FortAwesome/Font-Awesome</td>
+            <td>Font Awesome Free License</td>
+            <td>The iconic SVG, font, and CSS toolkit</td>
+          </tr>
+          <tr>
+            <th scope="row">d3-quadtree</th>
+            <td>JavaScipt</td>
+            <td>https://github.com/d3/d3-quadtree</td>
+            <td>BSD-3-Clause License</td>
+            <td>Two-dimensional recursive spatial subdivision.</td>
+          </tr>
+          <tr>
+            <th scope="row">3d-force-graph</th>
+            <td>JavaScipt</td>
+            <td>https://github.com/vasturiano/3d-force-graph</td>
+            <td>MIT License</td>
+            <td>3D force-directed graph component using ThreeJS/WebGL</td>
+          </tr>
+          <tr>
+            <th scope="row">jsoneditor</th>
+            <td>JavaScipt</td>
+            <td>https://github.com/josdejong/jsoneditor</td>
+            <td>Apache-2.0 License</td>
+            <td>A web-based tool to view, edit, format, and validate JSON</td>
+          </tr>
+          <tr>
+            <th scope="row">Django</th>
+            <td>Python</td>
+            <td>https://github.com/django/django</td>
+            <td>https://github.com/django/django/blob/main/LICENSE</td>
+            <td>Web framework</td>
+          </tr>
+          <tr>
+            <th scope="row">asgiref</th>
+            <td>Python</td>
+            <td>https://github.com/django/asgiref</td>
+            <td>BSD-3-Clause License</td>
+            <td>ASGI is a standard for Python asynchronous web apps and servers to communicate with each other, and positioned as an asynchronous successor to WSGI</td>
+          </tr>
+          <tr>
+            <th scope="row">networkx</th>
+            <td>Python</td>
+            <td>https://github.com/networkx/networkx</td>
+            <td>BSD-3-Clause License</td>
+            <td> package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.</td>
+          </tr>
+          <tr>
+            <th scope="row">numpy</th>
+            <td>Python</td>
+            <td>https://github.com/numpy/numpy</td>
+            <td>BSD-3-Clause License</td>
+            <td>The fundamental package for scientific computing with Python.</td>
+          </tr>
+          <tr>
+            <th scope="row">pandas</th>
+            <td>Python</td>
+            <td>https://github.com/pandas-dev/pandas</td>
+            <td>BSD-3-Clause License</td>
+            <td>Flexible and powerful data analysis / manipulation library for Python</td>
+          </tr>
+          <tr>
+            <th scope="row">pydot</th>
+            <td>Python</td>
+            <td>https://github.com/pydot/pydot</td>
+            <td>MIT License</td>
+            <td>Python interface to Graphviz's Dot language</td>
+          </tr>
+          <tr>
+            <th scope="row">pyparsing</th>
+            <td>Python</td>
+            <td>https://github.com/pyparsing/pyparsing</td>
+            <td>MIT License</td>
+            <td>Python library for creating PEG parsers</td>
+          </tr>
+          <tr>
+            <th scope="row">sqlparse</th>
+            <td>Python</td>
+            <td>https://github.com/andialbrecht/sqlparse</td>
+            <td>BSD-3-Clause License</td>
+            <td>A non-validating SQL parser module for Python</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-md-12 text-center">
+            Developed by: <a href="#">I. Ivanov</a> & <a href="https://www3.tuhh.de/e11/schmidt/">Jens M. Schmidt</a>
+        </div>
+    </div>
+
+
+
+
+    </div>
+{% endblock %}

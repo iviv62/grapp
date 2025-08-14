@@ -1,0 +1,44 @@
+{% extends 'graph_visualization/base.html' %}
+{% block graph %}
+<div id="3d-graph"></div>
+
+<script>
+  let data = '{{data |safe}}';
+  try {
+    data = JSON.parse(data);
+  } catch (error) {
+    console.log(error)
+  }
+
+  const store = JSON.parse(localStorage.getItem("graphData"))
+  const elem = document.getElementById('3d-graph');
+  console.log(store);
+
+
+
+  const visualize = (data) => {
+
+
+    const Graph = ForceGraph3D({ controlType: 'orbit' })(elem)
+      .nodeLabel('id')
+      .graphData({ nodes: data['nodes'], links: data['links']})
+      .d3Force("center", d3.forceCenter(0,0))
+      .linkWidth(5)
+      //.d3Force('radial', d3.forceRadial(d => 100))
+      .d3Force('collide', d3.forceCollide(16))
+      .nodeAutoColorBy('id');
+
+    //window.Graph.graphData({nodes:nodes,links:data["links"]})
+
+
+  }
+
+  $(document).ready(function () {
+    store?visualize(store):visualize(data);
+  });
+
+
+</script>
+
+
+{% endblock %}
