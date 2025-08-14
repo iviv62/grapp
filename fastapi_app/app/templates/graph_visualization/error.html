@@ -1,0 +1,11 @@
+{% extends 'graph_visualization/base.html' %}
+{% block graph %}
+{% load static%}
+
+<div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">Ooops</h4>
+    <p>There was a problem, Unsupported data format or incorrect input! </p>
+    <hr>
+    <p class="mb-0">Please Try again <img src="{% static 'arrow.png' %}" width="20" height="20"></img> <a href="{% url 'home'%}" class="btn btn-dark">Home Page</a></p>
+  </div>
+{% endblock %}
