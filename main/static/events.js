@@ -44,25 +44,6 @@ $(document).ready( function () {
 });
 
 
-//generate django csrf token
-function getCookie(name) {
-  var cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-      var cookie = cookies[i].trim();
-      // Does this cookie string begin with the name we want?
-      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
-//csrf token used by django for security reasons
-var csrftoken = getCookie('csrftoken');
-
 function overrideDefault(event) {
   event.preventDefault();
   event.stopPropagation();
@@ -233,10 +214,10 @@ const addEventListeners=()=> {
   });
 
   document.getElementById("gml").addEventListener('click', () => {
-    sendData('api/gml/',"graph.gml");
+    sendData('/api/graph/gml',"graph.gml");
   })
   document.getElementById("g6").addEventListener('click', () => {
-    sendData('api/graph6/',"graph.g6");
+    sendData('/api/graph/graph6',"graph.g6");
   })
   
 
@@ -410,8 +391,7 @@ function sendData(URL,name) {
   fetch(URL, {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
-      'X-CSRFToken': csrftoken,
+      'Accept': 'application/json'
     },
     body: JSON.stringify(data)
   }).then(response => response.json())
@@ -427,8 +407,7 @@ const getGraphData=(URL)=>{
   fetch(URL, {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
-      'X-CSRFToken': csrftoken,
+      'Accept': 'application/json'
     },
     body: JSON.stringify(data)
   }).then(response => response.json())
@@ -452,11 +431,10 @@ const file_changed= (event)=>{
 }
 
 const FetchAndSaveToLocalStorage=(formData)=>{
-  fetch('graph/api/newGraph/', {
+  fetch('/api/graph/newGraph', {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
-      'X-CSRFToken': csrftoken,
+      'Accept': 'application/json'
     },
     body: formData
   }).then(response => response.json())
@@ -475,11 +453,10 @@ const FetchAndSaveToLocalStorage=(formData)=>{
 
 const renderNewFile=(formData)=>{
 
-  fetch('api/newGraph/', {
+  fetch('/api/graph/newGraph', {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
-      'X-CSRFToken': csrftoken,
+      'Accept': 'application/json'
     },
     body: formData
   }).then(response => response.json())
@@ -496,11 +473,11 @@ function modify(cmd, parameters) {
   let data = removeUnwantedData();
   data.cmd = cmd;
   data.parameters = parameters
-  fetch('api/modify/', {
+  fetch('/api/graph/modify', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'X-CSRFToken': csrftoken,
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
   }).then(response => response.json())
@@ -529,13 +506,12 @@ function download(filename, text) {
 }
 
 const getCommandParameters = async (cmd) => {
-  let data = await fetch('api/parameters/', {
+  const formData = new FormData();
+  formData.append('name', cmd);
+
+  let data = await fetch('/api/graph/parameters', {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'X-CSRFToken': csrftoken,
-    },
-    body: JSON.stringify(cmd)
+    body: formData
   }).then(response => response.json())
     .then((data) => {
       return data
@@ -545,7 +521,7 @@ const getCommandParameters = async (cmd) => {
 }
 
 const generateShareLink= ()=>{
-  getGraphData('api/graph6/')
+  getGraphData('/api/graph/graph6')
 }
 
 const openKeyBindingsModal=()=>{
@@ -553,14 +529,12 @@ const openKeyBindingsModal=()=>{
 }
 
 const getSampleGraphFromServer = async (name) =>{
+  const formData = new FormData();
+  formData.append('name', name);
 
-  let data = await fetch('api/sample-graph/', {
+  let data = await fetch('/api/sample-graph', {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'X-CSRFToken': csrftoken,
-    },
-    body: JSON.stringify(name)
+    body: formData
   }).then(response => response.json())
     .then((data) => {
       return data
